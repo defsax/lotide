@@ -21,15 +21,15 @@ const assertArraysEqual = function(arrayA, arrayB) {
 };
 
 const without = function(source, itemsToRemove) {
+  let itemsRemoved = source.slice();
   for (let i = 0; i < itemsToRemove.length; i++) {
     for (let j = 0; j < source.length; j++) {
-      if (source[j] === itemsToRemove[i]) {
-        source.splice(j, 1);
-        console.log('source spliced: ', source);
+      if (itemsRemoved[j] === itemsToRemove[i]) {
+        itemsRemoved.splice(j, 1);
       }
     }
   }
-  return source;
+  return itemsRemoved;
 };
 
 const words = ["hello", "world", "lighthouse"];
@@ -40,3 +40,6 @@ assertArraysEqual(words, ["hello", "world", "lighthouse"]);
 
 assertArraysEqual(without([1, 2, 3], [1]), [2, 3]); // => [2, 3]
 assertArraysEqual(without(["1", "2", "3"], [1, 2, "3"]), ["1", "2"]); // => ["1", "2"]
+
+assertArraysEqual(without([1, 2, 3, 4, 5], [2]), [1, 3, 4, 5]); // => [2, 3]
+assertArraysEqual(without([1, 2, 3, 4, 5], [2, 4, 5]), [1, 3]); // => [2, 3]
