@@ -22,7 +22,6 @@ const assertArraysEqual = function(arrayA, arrayB) {
 
 const flatten = function(flatArr, unsortedArr) {
   for (let i of unsortedArr) {
-    //if (typeof(i) === 'object')
     if (Array.isArray(i))
       flatten(flatArr, i);
     else
