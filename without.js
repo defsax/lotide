@@ -17,10 +17,11 @@ const assertArraysEqual = function(arrayA, arrayB) {
   if (eqArrays(arrayA, arrayB))
     console.log(`✅ Assertion passed: ${arrayA} === ${arrayB}\n`);
   else
-    console.log(`❌ Assertion failed: ${arrayB} !== ${arrayB}\n`);
+    console.log(`❌ Assertion failed: ${arrayA} !== ${arrayB}\n`);
 };
 
 const without = function(source, itemsToRemove) {
+  //duplicate source array
   let itemsRemoved = source.slice();
   for (let i = 0; i < itemsToRemove.length; i++) {
     for (let j = 0; j < source.length; j++) {
