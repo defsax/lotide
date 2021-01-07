@@ -1,4 +1,5 @@
 const eqArrays = function(arrayA, arrayB) {
+  console.log('\nComparing Arrays:');
   if (arrayA.length !== arrayB.length) {
     console.log('Arrays are not same length.');
     return false;
@@ -21,7 +22,7 @@ const eqObjects = function(object1, object2) {
   let obj2Keys = Object.keys(object2);
   
   if (obj1Keys.length !== obj2Keys.length) {
-    console.log('Objects have a different number of keys.\n');
+    console.log('Objects have a different number of keys.');
     return false;
   }
 
@@ -29,7 +30,7 @@ const eqObjects = function(object1, object2) {
     if (Array.isArray(object1[i]) && Array.isArray(object2[i]))
       return eqArrays(object1[i], object2[i]);
     else if (object1[i] !== object2[i]) {
-      console.log('Value mismatch:', object1[i], object2[i], '\n');
+      console.log('Value mismatch:', object1[i], object2[i]);
       return false;
     }
   }
@@ -37,10 +38,12 @@ const eqObjects = function(object1, object2) {
 };
 
 const assertObjectsEqual = function(actual, expected) {
+  const inspect = require('util').inspect;
+  //console.log(`Example label: ${inspect(actual)}`);
   if (eqObjects(actual, expected))
-    console.log('\nObject 1:', actual, '\n\t\t===\nObject 2:' , expected, '\n\n✅ Assertion Passed ✅');
+    console.log(`\nObject 1: ${inspect(actual)} ===\nObject 2: ${inspect(expected)} \n\n✅ Assertion Passed ✅`);
   else
-    console.log('\nObject 1:', actual, '\n\t\t!==\nObject 2:' , expected, '\n\n❌ Assertion Failed ❌');
+    console.log(`\nObject 1: ${inspect(actual)} ===\nObject 2: ${inspect(expected)} \n\n❌ Assertion Passed ❌`);
 };
 
 const obj1 = {
