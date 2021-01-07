@@ -8,6 +8,7 @@ const assertEqual = function(a, b) {
 const findKey = function(obj, callback) {
   //loop through object
   for (let value in obj) {
+    console.log(value);
     //call callback and pass in value at current key.
     //if it satisfies callback's logic(x => x.stars === 2), return value
     if (callback(obj[value]))
@@ -16,6 +17,19 @@ const findKey = function(obj, callback) {
   //otherwise return undefined
   return undefined;
 };
+
+/*
+  Method using Object.entries courtesy of Luc/Alvin
+
+  const findKey = function(data, callback) {
+    for (let [key,value] of Object.entries(data)) {
+      if (callback(value)) {
+        return key;
+      }
+    }
+  };
+  
+*/
 
 assertEqual(findKey({
   "Blue Hill": { stars: 1 },
