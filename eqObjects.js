@@ -69,6 +69,6 @@ const aa = { c: ["1", 5], d: ["2", 3] };
 const bb = { d: ["2", 3], c: ["1", 5] };
 assertEqual(eqObjects(aa, bb), true); // => true
 
-const aaa = { a: [1, 2, 3,], b: [3, 3, 4]};
-const bbb = { a: [1, 2, 3,], b: [3, 2, 4]};
-assertEqual(eqObjects(aaa, bbb), false); // => true
+const hola = { a: [1, 2, 3], b: [3, 3, 4]};
+const hello = { a: [1, 2, 3], b:[3, 2, 4]};
+assertEqual(eqObjects(hola, hello), false);
