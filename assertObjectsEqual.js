@@ -27,9 +27,10 @@ const eqObjects = function(object1, object2) {
   }
 
   for (let i of obj1Keys) {
-    if (Array.isArray(object1[i]) && Array.isArray(object2[i]))
-      return eqArrays(object1[i], object2[i]);
-    else if (object1[i] !== object2[i]) {
+    if (Array.isArray(object1[i]) && Array.isArray(object2[i])) {
+      if (!eqArrays(object1[i], object2[i]))
+        return false;
+    } else if (object1[i] !== object2[i]) {
       console.log('Value mismatch:', object1[i], object2[i]);
       return false;
     }
