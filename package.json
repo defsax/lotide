@@ -1,7 +1,7 @@
 {
-  "name": "lotide",
+  "name": "@defsax/lotide",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Lodash clone. It was created and published by me as part of my learnings at Lighthouse Labs.",
   "main": "assertArraysEqual.js",
   "directories": {
     "test": "test"
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/defsax/lotide.git"
   },
-  "author": "",
+  "author": "Perry D",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/defsax/lotide/issues"
