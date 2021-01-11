@@ -1,22 +1,36 @@
 //countOnlyTest.js
 const countOnly = require('../countOnly.js');
-const assertEqual = require('../assertEqual.js');
+const assert = require('chai').assert;
 
-const firstNames = [
-  "Karl",
-  "Salima",
-  "Agouhanna",
-  "Fang",
-  "Kavith",
-  "Jason",
-  "Salima",
-  "Fang",
-  "Joe"
-];
+describe('#countOnly', function() {
+  //test, returns array less 'a'
+  const firstNames = [
+    "Karl",
+    "Salima",
+    "Agouhanna",
+    "Fang",
+    "Kavith",
+    "Jason",
+    "Salima",
+    "Fang",
+    "Joe"
+  ];
 
-const result1 = countOnly(firstNames, { "Jason": true, "Karima": true, "Fang": true, "Agouhanna": false });
+  const result = countOnly(firstNames, { "Jason": true, "Karima": true, "Fang": true, "Agouhanna": false });
 
-assertEqual(result1["Jason"], 1);
-assertEqual(result1["Karima"], undefined);
-assertEqual(result1["Fang"], 2);
-assertEqual(result1["Agouhanna"], undefined);
+  it("counts 'Jason' once", function() {
+    assert.strictEqual(result['Jason'], 1);
+  });
+
+  it("counts 'Fang' twice", function() {
+    assert.strictEqual(result['Fang'], 2);
+  });
+  
+  it("'Karima' is undefined because not in array", function() {
+    assert.strictEqual(result['Karima'], undefined);
+  });
+
+  it("doesn't count Agouhanna (undefined)", function() {
+    assert.strictEqual(result['Agouhanna'], undefined);
+  });
+});
