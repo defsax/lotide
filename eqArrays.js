@@ -11,7 +11,7 @@ const eqArrays = function(arrayA, arrayB) {
   
   for (let i = 0; i < arrayA.length; i++) {
     if (arrayA[i] !== arrayB[i]) {
-      console.log('Elements ' + arrayA[i] + ' and ' + arrayB[i] + ' are not equal.');
+      console.log('Elements at arrayA[' + i + '] = ' + arrayA[i] + ' and arrayB[' + i + '] = ' + arrayB[i] + ' are not equal.');
       return false;
     }
   }

@@ -1,12 +1,32 @@
 const eqArrays = require('../eqArrays.js');
-const assertEqual = require('../assertEqual.js');
+const assert = require('chai').assert;
 
-//tests for eqArrays.js
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => true
-assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), true); // => false
+describe('#eqArrays', function() {
+  //compare two arrays
+  
+  it("returns true given [1, 2, 3], [1, 2, 3]", function() {
+    assert.isTrue(eqArrays([1, 2, 3], [1, 2, 3]));
+  });
+  
+  it("returns false given [1, 2, 3], [3, 2, 1]", function() {
+    assert.isFalse(eqArrays([1, 2, 3], [3, 2, 1]));
+  });
+  
+  it("returns true given ['1', '2', '3'], ['1', '2', '3']", function() {
+    assert.isTrue(eqArrays(["1", "2", "3"], ["1", "2", "3"]));
+  });
+  
+  it("returns false given ['1', '2', '3'], ['1', '2', 3]", function() {
+    assert.isFalse(eqArrays(["1", "2", "3"], ["1", "2", 3]));
+  });
+  
+  it("returns true given ['a', 'b', 'c'], ['a', 'b', 'c']", function() {
+    assert.isTrue(eqArrays(["a", "b", "c"], ["a", "b", "c"]));
+  });
+  
+  it("returns false given ['a', 'b', 'c'], ['c', 'b', 'a']", function() {
+    assert.isFalse(eqArrays(["a", "b", "c"], ["c", "b", "a"]));
+  });
+});
 
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true); // => true
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), true); // => false
 
-assertEqual(eqArrays(["a", "b", "c"], ["a", "b", "c"]), true); // => false
-assertEqual(eqArrays(["a", "b", "c"], ["c", "b", "a"]), true); // => false
