@@ -1,27 +1,51 @@
+const assert = require('chai').assert;
 const tail = require('../tail.js');
-const assertEqual = require('../assertEqual.js');
 
-//test, returns array less 'a'
-console.log(tail(['a', 'b', 'c', 'd']));
+describe('#tail', function() {
+  //test, returns array less 'a'
+  it("returns ['b', 'c', 'd'] when passed ['a', 'b', 'c', 'd']", function() {
+    assert.deepEqual(tail(['a', 'b', 'c', 'd']), ['b', 'c', 'd']);
+  });
 
-//set up arrays
-const words = ['Hello', 'Lighthouse', 'Labs'];
-const result = tail(words);
+  it("returns ['Lighthouse', 'Labs'] when passed ['Hello', 'Lighthouse', 'Labs']", function() {
+    //set up arrays
+    const words = ['Hello', 'Lighthouse', 'Labs'];
+    const result = tail(words);
+    assert.deepEqual(result, ['Lighthouse', 'Labs']);
+  });
+  
+  it("returns length of 3 when passed  ['Hello', 'Lighthouse', 'Labs', 'Bootcamp']", function() {
+    const words = ['Hello', 'Lighthouse', 'Labs', 'Bootcamp'];
+    const result = tail(words);
+    
+    assert.lengthOf(result, 3, 'array has a length of 3');
+  });
 
-//this will fail because we cannot directly compare two arrays
-assertEqual(result, ['Lighthouse', 'Labs']);
+  it("returns 'Lighthouse' when accessing 1st element of results", function() {
+    const words = ['Hello', 'Lighthouse', 'Labs', 'Bootcamp'];
+    const result = tail(words);
 
-//compass solution is hardcoded...
-assertEqual(result.length, 2);
-assertEqual(result[0], 'Lighthouse');
-assertEqual(result[1], 'Labs');
+    assert.strictEqual(result[0], 'Lighthouse');
+  });
 
-//original array is unmodified
-console.log(words);
 
-//test: returns empty array
-console.log(tail(['a']));
+  it("returns 'Labs' when accessing 2nd element of results", function() {
+    const words = ['Hello', 'Lighthouse', 'Labs', 'Bootcamp'];
+    const result = tail(words);
 
-//test: empty array return empty array
-console.log(tail([]));
+    assert.strictEqual(result[1], 'Labs');
+  });
+
+  it("returns an empty array when passed ['a']", function() {
+    //test: returns empty array
+    assert.isEmpty(tail(['a']));
+  });
+  
+  it("returns an empty array when passed []", function() {
+    //test: empty array return empty array
+    assert.isEmpty(tail([]));
+  });
+});
+
+
 
