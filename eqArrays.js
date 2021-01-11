@@ -1,4 +1,9 @@
 const eqArrays = function(arrayA, arrayB) {
+  if (!Array.isArray(arrayA) || !Array.isArray(arrayB)) {
+    console.log('One of arrays is not an array.');
+    return false;
+  }
+
   if (arrayA.length !== arrayB.length) {
     console.log('Arrays are not same length.');
     return false;
