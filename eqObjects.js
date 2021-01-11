@@ -1,25 +1,4 @@
-const assertEqual = function(a, b) {
-  if (a === b)
-    console.log(`✅ Assertion passed: ${a} === ${b}`);
-  else
-    console.log(`❌ Assertion failed: ${a} !== ${b}`);
-};
-
-const eqArrays = function(arrayA, arrayB) {
-  if (arrayA.length !== arrayB.length) {
-    console.log('Arrays are not same length.');
-    return false;
-  }
-  
-  for (let i = 0; i < arrayA.length; i++) {
-    if (arrayA[i] !== arrayB[i]) {
-      console.log('Elements ' + arrayA[i] + ' and ' + arrayB[i] + ' are not equal.');
-      return false;
-    }
-  }
-  return true;
-};
-
+const eqArrays = require('./eqArrays');
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a big fat false!
 const eqObjects = function(object1, object2) {
@@ -51,25 +30,3 @@ const eqObjects = function(object1, object2) {
 };
 
 module.exports = eqObjects;
-
-const ab = { a: "1", b: "2"};
-const ba = { b: "2", a: "1" };
-assertEqual(eqObjects(ab, ba), true); // => true
-
-const abc = { a: "1", b: "2", c: "3" };
-assertEqual(eqObjects(ab, abc), false); // => false
-
-const cd = { c: "1", d: ["2", 3] };
-const dc = { d: ["2", 3], c: "1" };
-assertEqual(eqObjects(cd, dc), true); // => true
-
-const cd2 = { c: "1", d: ["2", 3, 4] };
-assertEqual(eqObjects(cd, cd2), false); // => false
-
-const aa = { c: ["1", 5], d: ["2", 3] };
-const bb = { d: ["2", 3], c: ["1", 5] };
-assertEqual(eqObjects(aa, bb), true); // => true
-
-const hola = { a: [1, 2, 3], b: [3, 3, 4]};
-const hello = { a: [1, 2, 3], b:[3, 2, 4]};
-assertEqual(eqObjects(hola, hello), false);

@@ -1,23 +1,5 @@
-const eqObjects = require('../eqObjects-refactor.js');
-const assertEqual = require('../assertEqual.js');
-
-
-console.log(eqObjects(
-  { a: { z: 1 }, b: 2 },
-  { a: { z: 1 }, b: 2 })); // => true
-
-console.log(eqObjects(
-  { a: { y: 0, z: 1 }, b: 2 },
-  { a: { z: 1 },       b: 2 })); // => false
-
-console.log(eqObjects(
-  { a: { y: 0, z: 1 }, b: 2 },
-  { a: 1,              b: 2 })); // => false
-
-console.log(eqObjects(
-  { a: { y: 0, z: 1 }, b: { v: { u: 1}, w: 3, x: 4}},
-  { a: { y: 0, z: 1 }, b: { v: { u: 1, t: 12}, w: 3, x: 4}})); // => false
-
+const eqObjects = require('./eqObjects.js');
+const assertEqual = require('./assertEqual.js');
 
 const ab = { a: "1", b: "2"};
 const ba = { b: "2", a: "1" };
