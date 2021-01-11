@@ -27,25 +27,26 @@ const eqArrays = function(arrayA, arrayB) {
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a big fat false!
 const eqObjects = function(object1, object2) {
-  let obj1Keys = Object.keys(object1);
-  let obj2Keys = Object.keys(object2);
-  console.log(obj1Keys.length, obj2Keys.length);
-  if (obj1Keys.length !== obj2Keys.length) {
+  //check for numbers of keys
+  if (Object.keys(object1).length !== Object.keys(object2).length) {
     console.log('Objects have a different number of keys.');
     return false;
   }
 
   for (let key of Object.keys(object1)) {
-    //is object1[key](aka value) an array?
-    if (Array.isArray(object1[key])) {
+    
+    if (typeof(object1[key]) === 'object') {
+      //is value another object?
+      console.log(object1[key]);
+      return eqObjects(object1[key], object2[key]);
+    } else if (Array.isArray(object1[key])) {
+      //is object1[key](aka value) an array?
+
       //check if arrays are equal
       if (!eqArrays(object1[key], object2[key])) {
         //if not, return, it is a fail
         return false;
       }
-    } else if (typeof(object1[key]) === 'object') {
-      //is value another object?
-      return eqObjects(object1[key], object2[key]);
     } else if (object1[key] !== object2[key]) {
       //is value a primitive?
       console.log('no match: ', object1[key], object2[key], 'returning');
@@ -56,15 +57,21 @@ const eqObjects = function(object1, object2) {
 };
 
 
-console.log(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })); // => true
+// console.log(eqObjects(
+//   { a: { z: 1 }, b: 2 },
+//   { a: { z: 1 }, b: 2 })); // => true
+
+// console.log(eqObjects(
+//   { a: { y: 0, z: 1 }, b: 2 },
+//   { a: { z: 1 },       b: 2 })); // => false
+
+// console.log(eqObjects(
+//   { a: { y: 0, z: 1 }, b: 2 },
+//   { a: 1,              b: 2 })); // => false
 
 console.log(eqObjects(
-  { a: { y: 0, z: 1 }, b: 2 },
-  { a: { z: 1 },       b: 2 })); // => false
-
-console.log(eqObjects(
-  { a: { y: 0, z: 1 }, b: 2 },
-  { a: 1,              b: 2 })); // => false
+  { a: { y: 0, z: 1 }, b: { v: { u: 1}, w: 3, x: 4}},
+  { a: { y: 0, z: 1 }, b: { v: { u: 1, t: 12}, w: 3, x: 4}})); // => true
 
 
 // const ab = { a: "1", b: "2"};
