@@ -7,7 +7,7 @@ const middle = function(arr) {
     return [arr[Math.floor(arr.length / 2) - 1], arr[Math.floor(arr.length / 2)]];
   } else {
     //odd
-    return [arr[Math.floor(arr.length / 2)]];
+    return arr[Math.floor(arr.length / 2)];
   }
 };
 
