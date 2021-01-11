@@ -12,8 +12,6 @@ const eqObjects = function(object1, object2) {
   }
 
   for (let key of obj1Keys) {
-    console.log('object1[key]', object1[key]);
-    console.log('object2[key]', object2[key]);
     //check if arrays
     if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
       //check if arrays are equal

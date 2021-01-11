@@ -1,42 +1,67 @@
 const eqObjects = require('../eqObjects-refactor.js');
-const assertEqual = require('../assertEqual.js');
+//const assertEqual = require('../assertEqual.js');
+const assert = require('chai').assert;
 
+describe('#eqObjectsRefactor', function() {
+  //compare two arrays
+  
+  it(`returns true given OBJ1 = { a: { z: 1 }, b: 2 }, OBJ2 =
+  { a: { z: 1 }, b: 2 }`, function() {
+    assert.isTrue(eqObjects(
+      { a: { z: 1 }, b: 2 },
+      { a: { z: 1 }, b: 2 }));
+  });
 
-console.log(eqObjects(
-  { a: { z: 1 }, b: 2 },
-  { a: { z: 1 }, b: 2 })); // => true
+  it(`returns false given OBJ1 = { a: { y: 0, z: 1 }, b: 2 }, OBJ2 = { a: { z: 1 }, b: 2 }`, function() {
+    assert.isFalse(eqObjects(
+      { a: { y: 0, z: 1 }, b: 2 },
+      { a: { z: 1 },       b: 2 }));
+  });
 
-console.log(eqObjects(
-  { a: { y: 0, z: 1 }, b: 2 },
-  { a: { z: 1 },       b: 2 })); // => false
+  it(`returns false given OBJ1 = { a: { y: 0, z: 1 }, b: 2 }, OBJ2 = { a: 1, b: 2 }`, function() {
+    assert.isFalse(eqObjects(
+      { a: { y: 0, z: 1 }, b: 2 },
+      { a: 1,              b: 2 }));
+  });
 
-console.log(eqObjects(
-  { a: { y: 0, z: 1 }, b: 2 },
-  { a: 1,              b: 2 })); // => false
+  it(`returns false given OBJ1 = { a: { y: 0, z: 1 }, b: { v: { u: 1}, w: 3, x: 4}}, OBJ2 = { a: { y: 0, z: 1 }, b: { v: { u: 1, t: 12}, w: 3, x: 4}}`, function() {
+    assert.isFalse(eqObjects(
+      { a: { y: 0, z: 1 }, b: { v: { u: 1}, w: 3, x: 4}},
+      { a: { y: 0, z: 1 }, b: { v: { u: 1, t: 12}, w: 3, x: 4}}));
+  });
+    
+  const ab = { a: "1", b: "2"};
+  const ba = { b: "2", a: "1" };
+  const abc = { a: "1", b: "2", c: "3" };
+  const cd = { c: "1", d: ["2", 3] };
+  const dc = { d: ["2", 3], c: "1" };
+  const cd2 = { c: "1", d: ["2", 3, 4] };
+  const aa = { c: ["1", 5], d: ["2", 3] };
+  const bb = { d: ["2", 3], c: ["1", 5] };
+  const hola = { a: [1, 2, 3], b: [3, 3, 4]};
+  const hello = { a: [1, 2, 3], b:[3, 2, 4]};
+  
+  it('returns true given OBJ1 = { a: "1", b: "2"} OBJ2 = { b: "2", a: "1" }', function() {
+    assert.isTrue(eqObjects(ab, ba));
+  });
 
-console.log(eqObjects(
-  { a: { y: 0, z: 1 }, b: { v: { u: 1}, w: 3, x: 4}},
-  { a: { y: 0, z: 1 }, b: { v: { u: 1, t: 12}, w: 3, x: 4}})); // => false
+  it('returns false given OBJ1 = { a: "1", b: "2"}, OBJ2 = { a: "1", b: "2", c: "3" }', function() {
+    assert.isFalse(eqObjects(ab, abc));
+  });
+  
+  it('returns true given OBJ1 = { c: "1", d: ["2", 3] }, OBJ2 = { d: ["2", 3], c: "1" }', function() {
+    assert.isTrue(eqObjects(cd, dc));
+  });
 
+  it('returns false given OBJ1 = { c: "1", d: ["2", 3] }, OBJ2 = { c: "1", d: ["2", 3, 4] }', function() {
+    assert.isFalse(eqObjects(cd, cd2));
+  });
 
-const ab = { a: "1", b: "2"};
-const ba = { b: "2", a: "1" };
-assertEqual(eqObjects(ab, ba), true); // => true
+  it('returns true given OBJ1 = { c: ["1", 5], d: ["2", 3] }, OBJ2 = { d: ["2", 3], c: ["1", 5] }', function() {
+    assert.isTrue(eqObjects(aa, bb));
+  });
 
-const abc = { a: "1", b: "2", c: "3" };
-assertEqual(eqObjects(ab, abc), false); // => false
-
-const cd = { c: "1", d: ["2", 3] };
-const dc = { d: ["2", 3], c: "1" };
-assertEqual(eqObjects(cd, dc), true); // => true
-
-const cd2 = { c: "1", d: ["2", 3, 4] };
-assertEqual(eqObjects(cd, cd2), false); // => false
-
-const aa = { c: ["1", 5], d: ["2", 3] };
-const bb = { d: ["2", 3], c: ["1", 5] };
-assertEqual(eqObjects(aa, bb), true); // => true
-
-const hola = { a: [1, 2, 3], b: [3, 3, 4]};
-const hello = { a: [1, 2, 3], b:[3, 2, 4]};
-assertEqual(eqObjects(hola, hello), false);
+  it('returns false given OBJ1 = { a: [1, 2, 3], b: [3, 3, 4]}, OBJ2 = { a: [1, 2, 3], b:[3, 2, 4]}', function() {
+    assert.isFalse(eqObjects(hola, hello));
+  });
+});
