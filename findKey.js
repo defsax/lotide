@@ -1,7 +1,6 @@
 const findKey = function(obj, callback) {
   //loop through object
   for (let value in obj) {
-    console.log(value);
     //call callback and pass in value at current key.
     //if it satisfies callback's logic(x => x.stars === 2), return value
     if (callback(obj[value]))
