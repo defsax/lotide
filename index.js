@@ -25,24 +25,25 @@ const takeUntil = require('./takeUntil.js');
 const without = require('./without.js');
 
 module.exports = {
-  head: head,
-  tail: tail,
-  middle: middle,
+  head,
+  tail,
+  middle,
 
-  assertObjectsEqual: assertObjectsEqual,
-  assertArraysEqual: assertArraysEqual,
-  assertEqual: assertEqual,
-  eqArrays: eqArrays,
-  eqObjects: eqObjects,
-  eqObjectsRecursive: eqObjectsRecursive,
+  assertObjectsEqual,
+  assertArraysEqual,
+  assertEqual,
   
-  countLetters: countLetters,
-  countOnly: countOnly,
-  findKey: findKey,
-  findKeyByValue: findKeyByValue,
-  flatten: flatten,
-  letterPositions: letterPositions,
-  map: map,
-  takeUntil: takeUntil,
-  without: without
+  eqArrays,
+  eqObjects,
+  eqObjectsRecursive,
+  
+  countLetters,
+  countOnly,
+  findKey,
+  findKeyByValue,
+  flatten,
+  letterPositions,
+  map,
+  takeUntil,
+  without
 };
