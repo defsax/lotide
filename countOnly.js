@@ -33,6 +33,8 @@ const countOnly = function(allItems, itemsToCount) {
   return results;
 };
 
+module.exports = countOnly;
+
 const result1 = countOnly(firstNames, { "Jason": true, "Karima": true, "Fang": true, "Agouhanna": false });
 
 assertEqual(result1["Jason"], 1);

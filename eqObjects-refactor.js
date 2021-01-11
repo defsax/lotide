@@ -56,6 +56,7 @@ const eqObjects = function(object1, object2) {
   return true;
 };
 
+module.exports = eqObjects;
 
 // console.log(eqObjects(
 //   { a: { z: 1 }, b: 2 },

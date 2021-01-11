@@ -13,6 +13,8 @@ const findKeyByValue = function(obj, val) {
   return undefined;
 };
 
+module.exports = findKeyByValue;
+
 const bestTVShowsByGenre = {
   // eslint-disable-next-line camelcase
   sci_fi: "The Expanse",

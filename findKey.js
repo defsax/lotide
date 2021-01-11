@@ -18,6 +18,8 @@ const findKey = function(obj, callback) {
   return undefined;
 };
 
+module.exports = findKey;
+
 /*
   Method using Object.entries courtesy of Luc/Alvin
 
