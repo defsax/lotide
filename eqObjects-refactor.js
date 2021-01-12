@@ -10,12 +10,8 @@ const eqObjects = function(object1, object2) {
   }
 
   for (let key of Object.keys(object1)) {
-    
-    if (typeof(object1[key]) === 'object') {
-      //is value another object?
-      console.log(object1[key]);
-      return eqObjects(object1[key], object2[key]);
-    } else if (Array.isArray(object1[key])) {
+    //check for array first, since array is also an object
+    if (Array.isArray(object1[key])) {
       //is object1[key](aka value) an array?
 
       //check if arrays are equal
@@ -23,6 +19,11 @@ const eqObjects = function(object1, object2) {
         //if not, return, it is a fail
         return false;
       }
+    } else if (typeof(object1[key]) === 'object') {
+      //is value another object?
+      console.log('key\'s value is another object:', object1[key]);
+      if (!eqObjects(object1[key], object2[key]))
+        return false;
     } else if (object1[key] !== object2[key]) {
       //is value a primitive?
       console.log('no match: ', object1[key], object2[key], 'returning');

@@ -3,7 +3,7 @@ const eqObjects = require('../eqObjects-refactor.js');
 const assert = require('chai').assert;
 
 describe('#eqObjectsRefactor', function() {
-  //compare two arrays
+  //compare two objects
   
   it(`returns true given OBJ1 = { a: { z: 1 }, b: 2 }, OBJ2 =
   { a: { z: 1 }, b: 2 }`, function() {
